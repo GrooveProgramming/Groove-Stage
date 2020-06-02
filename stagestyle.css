@@ -62,7 +62,7 @@ h1 { font-weight: 200; font-size: 40px; }
 	padding-left: 5px;
 	
 	/* Squish the header */
-	height: 50px;
+	height: 40px;
 	
 	vertical-align: bottom;
 	
@@ -71,7 +71,7 @@ h1 { font-weight: 200; font-size: 40px; }
 	
 	background-color: #f3f3f3;
 	
-	font-size: 25px;
+	font-size: 20px;
 	line-height: 1.5;
 }
 .divider p { margin: 10px 10px 5px 10px; }
