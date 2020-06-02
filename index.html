@@ -4,12 +4,11 @@
 		<script src="Scripting/Maths.js"></script>
 		<script src="Scripting/SpriteManager.js"></script>
 		<script src="Scripting/UserScript.js"></script>
-		<script src="Scripting/Renderer.js"></script>
 		
 		<link href="stagestyle.css" rel="stylesheet" type="text/css" />
 		<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
 		
-		<title>Groove - Stage &times;</title>
+		<title>Groove - Stage</title>
 	</head>
 	<body>
 		
@@ -45,9 +44,15 @@
 					time = getTime();
 					deltaTime = (time - lastTime)/1000;
 					lastTime = time;
+					
+					//console.log(deltaTime);
+					
+					tickUserScripts();
+					renderAllSprites();
 				}
 				sizeStage();
 				displaySpriteList();
+				renderAllSprites();
 				
 				lastTime = getTime();
 				

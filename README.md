@@ -6,6 +6,8 @@ This is a mock-up stage for Groove.
 * Dynamically created sprite list and stage.
 * Ability to add and delete sprites.
 * Basic style.
+* Ability to render sprites in different positions.
+* Camera
 ### I will do soon
 * Selectable sprites (click on the sprite on the stage, the sprite in the sprite list and the thumbnail in the sprite list.)
 * Arrows for easy positioning, scaling and rotating of sprites (some icons at the top to change mode).

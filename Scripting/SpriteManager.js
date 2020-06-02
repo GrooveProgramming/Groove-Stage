@@ -14,7 +14,7 @@ imagePaths = new Array();
 sprites = new Array();
 
 // Sprite references are [in scene, li, thumbnail]
-spriteSelectables = new Array();
+spriteInstances = new Array();
 
 // The sprites you have clicked on. You can select multiple sprites at a time.
 selectedSprites = new Array();
@@ -22,6 +22,26 @@ selectedSprites = new Array();
 var spriteList;
 var stage;
 var stageWrapper;
+
+var playing = false;
+
+// This is the camera the user uses when they are in the game. It can move rotate and zoom allowing for easy scrolling and cinamatics. It is controlled by a script.
+var gameCamera = {
+		"position": {"x": 0, "y": 0},
+		"viewport": undefined,
+		"scale": 1,
+		"rotation": 90
+};
+
+// Different camera allows user to look further than the starting camera position.
+var sceneCamera = {
+		"position": {"x": 500, "y": 0},
+		"viewport": undefined,
+		"scale": 2,
+		"rotation": 90
+};
+// Current camera
+var camera;
 
 // resize stage and set data when window resized or opened.
 function sizeStage() {
@@ -32,11 +52,13 @@ function sizeStage() {
 	var targetHeight = stageWrapper.offsetHeight;
 
 	stage.style.height = targetHeight + "px";
+	
+	gameCamera.viewport = {"x": stageWrapper.offsetWidth, "y": stageWrapper.offsetHeight};
+	sceneCamera.viewport = {"x": stageWrapper.offsetWidth, "y": stageWrapper.offsetHeight};
 }
 
 // add event listeners for the size of the stage
 window.addEventListener("resize", sizeStage);
-sizeStage();
 
 document.addEventListener("click", function(event){
         var targetElement = event.target || event.srcElement;
@@ -62,7 +84,7 @@ function newSpriteProperties(image, label, position, scale, rotation, effects, i
 			"id": id,
 			"image": image || -1,
 			"position": position || {"x": 0, "y": 0},
-			"scale": scale || {"x": 100, "y": 100},
+			"scale": scale || {"x": 1, "y": 1},
 			"rotation": rotation || 90,
 			"effects": effects || {},
 			"isgizmo": isgizmo || false
@@ -77,6 +99,10 @@ function getSprites(){
 	newSpriteProperties(2);
 	newSpriteProperties(1);
 	
+	sprites[1].scale.x = .4;
+	sprites[1].scale.y = .4;
+	sprites[1].position.y = -200;
+	sprites[0].position.x = 500;
 }
 
 function newSprite(){
@@ -87,10 +113,10 @@ function newSprite(){
 function removeSprite(id) {
 	
 	// Remove sprite from stage
-	stage.removeChild(spriteSelectables[id][0])
+	stage.removeChild(spriteInstances[id][0])
 	
 	// Remove sprite from sprite list
-	spriteList.removeChild(spriteSelectables[id][1]);
+	spriteList.removeChild(spriteInstances[id][1]);
 	
 	// Remove sprite from array
 	sprites[id] = undefined;
@@ -155,7 +181,7 @@ function displayItem(sprite, index){
 	
 	// If there is no sprite then exit early
 	if (!sprite){
-		spriteReferences[index] = undefined;
+		spriteInstances[index] = undefined;
 		return;
 	}
 	
@@ -163,7 +189,7 @@ function displayItem(sprite, index){
 	var listItem = document.createElement("LI");
 	var listItemContainer = document.createElement("DIV");
 	createDeleteButton(sprite);
-	spriteSelectables[index] = [createStageSprite(sprite),
+	spriteInstances[index] = [createStageSprite(sprite),
 			listItem,
 			createThumbnail(sprite)];
 	createLabel(sprite);
@@ -183,4 +209,34 @@ function displaySpriteList(){
 	
 	// Add the sprite list to the right place.
 	document.getElementById("spriteList").appendChild(spriteList);
+}
+
+function renderAllSprites() {
+	function renderSprite(sprite){
+		var instance = spriteInstances[sprite.id][0];
+		
+		var targetSize = {
+			"x": (instance.naturalWidth * sprite.scale.x) / camera.scale,
+			"y": (instance.naturalHeight * sprite.scale.y) / camera.scale
+		};
+		
+		var targetPosition = {
+			"x": (sprite.position.x - camera.position.x) / camera.scale + camera.viewport.x / 2,
+			"y": (sprite.position.y - camera.position.y) / camera.scale + camera.viewport.y / 2
+		};
+		console.log(targetSize);
+		
+		instance.style.width = targetSize.x + "px";
+		instance.style.height = targetSize.y + "px";
+		
+		instance.style.left = targetPosition.x + "px";
+		instance.style.bottom = targetPosition.y + "px";
+	}
+	if(playing){
+		camera = gameCamera;
+	}else{
+		camera = sceneCamera;
+	}
+	
+	sprites.forEach(renderSprite);
 }
