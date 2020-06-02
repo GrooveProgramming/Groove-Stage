@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="Scripting/Maths.js"></script>
+		<script src="Scripting/SpriteManager.js"></script>
+		<script src="Scripting/UserScript.js"></script>
+		<script src="Scripting/Renderer.js"></script>
+		
+		<link href="stagestyle.css" rel="stylesheet" type="text/css" />
+		<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+		
+		<title>Groove - Stage &times;</title>
+	</head>
+	<body>
+		
+		<div id="workspace">
+			<div id="menu">
+				<h1>Groove - Prototype Stage Demo</h1>
+			</div>
+			<div class="divider"><p>Stage (no set aspect ratio)</p></div>
+			<div id="stageWrapper"><div id="stage"></div></div>
+			
+			<div class="divider"><p>Sprite List (list of all sprites in scene) <button onclick="newSprite();">new</button></p></div>
+			<div id="spriteListContainer">
+				<div class="listwrapper" id="spriteList"></div>
+			</div>
+			
+			<div class="divider"><p>Assets (we could use reusable code blocks + costumes here)</p></div>
+			<div id="assets">(unfinished)</div>
+		</div>
+		
+		<script>
+			
+			window.onload = function(){
+				
+				// Function to calculate deltaTime
+				function getTime(){
+					var date = new Date();
+					return date.getTime();
+				}
+				
+				// Called every frame
+				function tick(){
+					// Calculate deltaTime in seconds (used for frame rate independance).
+					time = getTime();
+					deltaTime = (time - lastTime)/1000;
+					lastTime = time;
+				}
+				sizeStage();
+				displaySpriteList();
+				
+				lastTime = getTime();
+				
+				// Tick as often as possible
+				setInterval(tick, 0); 
+			}
+			
+		</script>
+	</body>
+</html>

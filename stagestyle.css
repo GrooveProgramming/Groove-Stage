@@ -1,0 +1,194 @@
+#button {
+  background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 15px 18px;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 5px;
+	display: inline-block;
+	font-size: 16px;
+	text-align: center;
+}
+
+#button:hover { background-color: #3d9c40; }
+
+/* ---------- Styling for page (all of the different containers) ---------- */
+
+#stage {
+	overflow: hidden;
+	width: 100%;
+	position: absolute;
+	height: 200px;
+}
+
+#stageWrapper {
+	overflow: hidden;
+	height: 100%;
+}
+
+/* Removes padding from the page. */
+html, body, #workspace{ padding: 0; margin: 0; height: 100%; width: 100%; font-family: 'Abel'; user-select: none; position: relative;}
+
+#menu, #stage, #assets, #spriteListContainer { background-color: #e0eff9;}
+
+/* The workspace is a table for easy laying out of elements. */
+#workspace { display: table; table-layout: fixed; border-collapse: collapse; }
+
+/* Each of the elements in the table is a table row */
+#menu, #stage, #assets, #spriteListContainer, .divider { display: table-row; }
+
+/* Menu is the bar at the top of the page. It will become a bar with dropdown lists */
+#menu {
+	/* Squish the menu */
+	height: 1px;
+	
+	
+	text-align: center;
+	font-size: 25px;
+	position: relative;
+}
+#stage .sprite {
+	z-index: 0;
+	position: absolute;
+}
+#assets { height: 145px; }
+
+h1 { font-weight: 200; font-size: 40px; }
+
+#spriteListContainer { height: 145px;  overflow: scroll; }
+
+.divider {
+	padding-left: 5px;
+	
+	/* Squish the header */
+	height: 50px;
+	
+	vertical-align: bottom;
+	
+	/* Add line */
+	border-bottom: solid 2px #dedede;
+	
+	background-color: #f3f3f3;
+	
+	font-size: 25px;
+	line-height: 1.5;
+}
+.divider p { margin: 10px 10px 5px 10px; }
+
+/* ---------- Styling for lists (sprites and assets) ---------- */
+
+/* Parent div */
+.listwrapper {
+    height: 145px;
+	overflow-y: auto;
+	
+	text-align: center;
+	
+}
+
+/* Sprite lists have to be unordered.  They are made in code*/
+.listwrapper ul {
+	margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+	
+	margin: 0px;
+}
+
+/* Each list item is an element, these are also made in code */
+.listwrapper li {
+	display: inline-block;	
+   
+   
+   	   animation-name: transitionIn;
+   animation-duration: 1s;
+
+}
+
+.listItemContainer {
+   display: inline-block;
+   padding-bottom: 5px;
+   width: 125px;
+   height: 125px;
+   overflow: hidden;
+   
+   background-color: #b6dbff;
+   border-radius: 10px;
+   
+   margin: 5px 5px 0px 5px;
+   position: relative;
+}
+
+@keyframes transitionIn {
+	0% {
+		opacity: 0;
+		width: 0px;
+	}
+	20% {
+		opacity: 0;
+		width: 125px;
+		
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+/* The thumbnail for the list elements */
+.listwrapper li img {
+	display: inline-block;
+	width: 125px;
+	height: 100px;
+	background-color: white;
+	border-radius: 10px 10px 0px 0px;
+}
+
+/* The delete button for the list elements */
+.listwrapper li .closeBtn {
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	right: 0px;
+	line-height:1;
+	border-radius: 20px;
+	
+	position: absolute;
+	
+	background-color: #b6dbff;
+	
+	width: 20px;
+	height: 20px;
+	
+}
+
+.listwrapper li .closeBtn:hover {
+	color: white;
+	background-color: #a3c5e6;
+}
+
+/* --------- Custom simple scroll bar (only works on some browsers) ---------- */
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: white; 
+	border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888; 
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555; 
+}
