@@ -213,6 +213,9 @@ function displaySpriteList(){
 
 function renderAllSprites() {
 	function renderSprite(sprite){
+		if(!sprite){
+			return;
+		}
 		var instance = spriteInstances[sprite.id][0];
 		
 		var targetSize = {
@@ -224,7 +227,6 @@ function renderAllSprites() {
 			"x": (sprite.position.x - camera.position.x) / camera.scale + camera.viewport.x / 2,
 			"y": (sprite.position.y - camera.position.y) / camera.scale + camera.viewport.y / 2
 		};
-		console.log(targetSize);
 		
 		instance.style.width = targetSize.x + "px";
 		instance.style.height = targetSize.y + "px";
