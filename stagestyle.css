@@ -1,17 +1,24 @@
-#button {
-  background-color: #4CAF50;
-	border: none;
-	color: white;
-	padding: 15px 18px;
-	text-align: center;
-	text-decoration: none;
-	border-radius: 5px;
-	display: inline-block;
-	font-size: 16px;
-	text-align: center;
+
+button {
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+    background-color: rgb(239, 239, 239);
+    box-sizing: border-box;
+    margin: 0em;
+    padding: 3px 6px;
+    border-width: 1px;
+	border-radius: 2px;
+    border-style: solid;
+    border-color: rgb(118, 118, 118);
+    border-image: initial;
+	font-family: arial;
+	float: right;
 }
 
-#button:hover { background-color: #3d9c40; }
+button:hover { background-color: rgb(230, 230, 230); }
+
+button:active { background-color: rgb(239, 239, 239); }
 
 /* ---------- Styling for page (all of the different containers) ---------- */
 
