@@ -35,7 +35,7 @@ var gameCamera = {
 
 // Different camera allows user to look further than the starting camera position.
 var sceneCamera = {
-		"position": {"x": 500, "y": 0},
+		"position": {"x": 0, "y": 0},
 		"viewport": undefined,
 		"scale": 2,
 		"rotation": 90
@@ -262,8 +262,8 @@ function renderSprite(sprite){
 	instance.style.width = targetSize.x + "px";
 	instance.style.height = targetSize.y + "px";
 	
-	instance.style.left = targetPosition.x + "px";
-	instance.style.bottom = targetPosition.y + "px";
+	instance.style.left = targetPosition.x - targetSize.x / 2 + "px";
+	instance.style.bottom = targetPosition.y - targetPosition.y / 2 + "px";
 }
 
 function renderAllSprites() {
