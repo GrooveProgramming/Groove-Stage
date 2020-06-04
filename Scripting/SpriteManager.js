@@ -55,6 +55,10 @@ function sizeStage() {
 	
 	gameCamera.viewport = {"x": stageWrapper.offsetWidth, "y": stageWrapper.offsetHeight};
 	sceneCamera.viewport = {"x": stageWrapper.offsetWidth, "y": stageWrapper.offsetHeight};
+	
+	if(!playing){
+		renderAllSprites();
+	}
 }
 
 // add event listeners for the size of the stage
