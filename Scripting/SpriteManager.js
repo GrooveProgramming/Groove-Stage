@@ -65,13 +65,25 @@ document.addEventListener("click", function(event){
         console.log(targetElement.tagName.toLowerCase());
 });
 
-// TODO: Rewrite the function so it gets images from paint editor and loads from save.
-function loadImages() {
+// TODO: Loads initial images
+function loadImages(anotherLoadedCallback, allLoadedCallback) {
 	
 	// create image list to load prototype images
 	imagePaths[0] = "SampleCostumes/duck.png";
 	imagePaths[1] = "SampleCostumes/goat.png";
 	imagePaths[2] = "SampleCostumes/grass.png";
+	
+	// Keep this. Loads the thumbnail not found icon
+	imagePaths[imagePaths.length] = "Icons/ThumbnailNotFound.svg";
+	
+	// Load images into the cache.
+	loadedImages = new Array();
+	var imagesLoaded = 0;
+	for (index = 0; index < imagePaths.length; index++){
+		loadedImages[index] = new Image();
+		loadedImages[index].src = imagePaths[index];
+		loadedImages[index].onload = index == imagePaths.length - 1 ? allLoadedCallback : anotherLoadedCallback;
+	}
 }
 
 //Function for easily adding a new sprite. All paramaters are optional.

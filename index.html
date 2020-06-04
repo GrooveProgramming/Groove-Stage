@@ -47,17 +47,26 @@
 					
 					//console.log(deltaTime);
 					
-					tickUserScripts();
-					renderAllSprites();
+					if(playing){
+						tickUserScripts();
+						renderAllSprites();
+					}
 				}
-				sizeStage();
-				displaySpriteList();
-				renderAllSprites();
 				
-				lastTime = getTime();
+				function start(){
+					sizeStage();
+					displaySpriteList();
+					renderAllSprites();
+					
+					lastTime = getTime();
+					
+					// Tick as often as possible
+					setInterval(tick, 0); 
+				}
 				
-				// Tick as often as possible
-				setInterval(tick, 0); 
+				loadImages(function(){ }, start);
+				
+				
 			}
 			
 		</script>
