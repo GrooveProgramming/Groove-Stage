@@ -83,6 +83,32 @@ h1 { font-weight: 200; font-size: 40px; }
 }
 .divider p { margin: 10px 10px 5px 10px; }
 
+
+/* ---------- Stylying for the transform widget chooser ---------- */
+#transformSelect {
+	position: relative;
+	margin: 0px;
+}
+
+#positionIcon, #scaleIcon, #rotateIcon, #transformSlide {
+	width: 45px;
+	height: 45px;
+	list-style: none;
+	position: absolute;
+}
+
+#transformSlide {
+	background-color: rgba(150,150,150,.1); 
+	transition: .15s;
+	right: 90px;
+}
+
+#positionIcon { background: url(Icons/TransformIcons.svg) 0px 0px; right: 90px;}
+
+#scaleIcon { background: url(Icons/TransformIcons.svg) -45px 0px; right: 45px;}
+
+#rotateIcon { background: url(Icons/TransformIcons.svg) -90px 0px; right: 0px;}
+
 /* ---------- Styling for lists (sprites and assets) ---------- */
 
 /* Parent div */
@@ -110,7 +136,7 @@ h1 { font-weight: 200; font-size: 40px; }
 	display: inline-block;	
    
    
-   	   animation-name: transitionIn;
+   	animation-name: transitionIn;
    animation-duration: 1s;
 
 }

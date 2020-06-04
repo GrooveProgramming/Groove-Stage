@@ -62,7 +62,9 @@ window.addEventListener("resize", sizeStage);
 
 document.addEventListener("click", function(event){
         var targetElement = event.target || event.srcElement;
-        console.log(targetElement.tagName.toLowerCase());
+        if(targetElement.classList.contains("transformIcon")){
+			document.getElementById("transformSlide").style.right = getComputedStyle(targetElement).right;
+		}
 });
 
 // TODO: Loads initial images
