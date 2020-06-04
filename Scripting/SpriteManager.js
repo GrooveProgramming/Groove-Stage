@@ -65,10 +65,24 @@ function sizeStage() {
 window.addEventListener("resize", sizeStage);
 
 document.addEventListener("click", function(event){
-        var targetElement = event.target || event.srcElement;
-        if(targetElement.classList.contains("transformIcon")){
-			document.getElementById("transformSlide").style.right = getComputedStyle(targetElement).right;
+	// Get element clicked
+	var targetElement = event.target || event.srcElement;
+	
+	// If it is a transform icon, move the selector and TODO: update the variable.
+	if(targetElement.classList.contains("transformIcon")){
+		document.getElementById("transformSlide").style.right = getComputedStyle(targetElement).right;
+	}
+	
+	// If it is in the spriteInstances array, add/remove it from the selected sprites.
+	spriteInstances.forEach(function(instances, index) {
+		if(instances.includes(targetElement)){
+			if(selectedSprites.includes(index))
+				selectedSprites.splice(selectedSprites.indexOf(index), 1);
+			else
+				selectedSprites.push(index);
+			console.log(selectedSprites);
 		}
+	});
 });
 
 // TODO: Loads initial images
