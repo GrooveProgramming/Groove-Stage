@@ -120,6 +120,7 @@ function getSprites(){
 function newSprite(){
 	var id = newSpriteProperties();
 	displayItem(sprites[id],id);
+	renderSprite(sprites[id]);
 }
 
 function removeSprite(id) {
@@ -212,7 +213,6 @@ function displayItem(sprite, index){
 }
 
 function displaySpriteList(){
-	loadImages();
 	getSprites();
 	
 	// Create a list for the sprites
@@ -223,29 +223,31 @@ function displaySpriteList(){
 	document.getElementById("spriteList").appendChild(spriteList);
 }
 
-function renderAllSprites() {
-	function renderSprite(sprite){
-		if(!sprite){
-			return;
-		}
-		var instance = spriteInstances[sprite.id][0];
-		
-		var targetSize = {
-			"x": (instance.naturalWidth * sprite.scale.x) / camera.scale,
-			"y": (instance.naturalHeight * sprite.scale.y) / camera.scale
-		};
-		
-		var targetPosition = {
-			"x": (sprite.position.x - camera.position.x) / camera.scale + camera.viewport.x / 2,
-			"y": (sprite.position.y - camera.position.y) / camera.scale + camera.viewport.y / 2
-		};
-		
-		instance.style.width = targetSize.x + "px";
-		instance.style.height = targetSize.y + "px";
-		
-		instance.style.left = targetPosition.x + "px";
-		instance.style.bottom = targetPosition.y + "px";
+function renderSprite(sprite){
+	if(!sprite){
+		return;
 	}
+	var instance = spriteInstances[sprite.id][0];
+	
+	var targetSize = {
+		"x": (instance.naturalWidth * sprite.scale.x) / camera.scale,
+		"y": (instance.naturalHeight * sprite.scale.y) / camera.scale
+	};
+	
+	var targetPosition = {
+		"x": (sprite.position.x - camera.position.x) / camera.scale + camera.viewport.x / 2,
+		"y": (sprite.position.y - camera.position.y) / camera.scale + camera.viewport.y / 2
+	};
+	
+	instance.style.width = targetSize.x + "px";
+	instance.style.height = targetSize.y + "px";
+	
+	instance.style.left = targetPosition.x + "px";
+	instance.style.bottom = targetPosition.y + "px";
+}
+
+function renderAllSprites() {
+
 	if(playing){
 		camera = gameCamera;
 	}else{
