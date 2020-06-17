@@ -89,8 +89,8 @@ document.addEventListener("click", function(event){
 function loadImages(anotherLoadedCallback, allLoadedCallback) {
 	
 	// create image list to load prototype images
-	imagePaths[0] = "SampleCostumes/duck.png";
-	imagePaths[1] = "SampleCostumes/goat.png";
+	imagePaths[0] = "SampleCostumes/goat.png";
+	imagePaths[1] = "SampleCostumes/duck.png";
 	imagePaths[2] = "SampleCostumes/grass.png";
 	
 	// Keep this. Loads the thumbnail not found icon
@@ -117,7 +117,7 @@ function newSpriteProperties(image, label, position, scale, rotation, effects, i
 			"image": image || -1,
 			"position": position || {"x": 0, "y": 0},
 			"scale": scale || {"x": 1, "y": 1},
-			"rotation": rotation || 90,
+			"rotation": rotation || -90,
 			"effects": effects || {},
 			"isgizmo": isgizmo || false
 	};
